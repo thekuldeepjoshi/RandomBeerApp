@@ -31,9 +31,9 @@ import DemoFooter from "components/Footers/DemoFooter.js";
 // index sections
 import SectionNavbars from "views/index-sections/SectionNavbars.js";
 import SectionJavaScript from "views/index-sections/SectionJavaScript.js";
-import SectionCarousel from "views/index-sections/SectionCarousel.js";
 import SectionNucleoIcons from "views/index-sections/SectionNucleoIcons.js";
 import SectionDark from "views/index-sections/SectionDark.js";
+import SectionBeerBody from "views/index-sections/SectionBeerBody.js";
 
 function Index() {
   document.documentElement.classList.remove("nav-open");
@@ -48,9 +48,8 @@ function Index() {
       <IndexNavbar />
       <IndexHeader />
       <div className="main">
-        <SectionNavbars />
         <SectionJavaScript />
-        <SectionCarousel />
+        <SectionBeerBody /> 
         <SectionDark />
         <DemoFooter />
       </div>

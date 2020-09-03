@@ -75,7 +75,7 @@ function IndexNavbar() {
             target="_blank"
             title="Random Beer App"
           >
-           Know your Beer
+           Home
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
@@ -84,9 +84,6 @@ function IndexNavbar() {
             })}
             onClick={toggleNavbarCollapse}
           >
-            <span className="navbar-toggler-bar bar1" />
-            <span className="navbar-toggler-bar bar2" />
-            <span className="navbar-toggler-bar bar3" />
           </button>
         </div>
         <Collapse
