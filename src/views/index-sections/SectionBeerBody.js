@@ -35,27 +35,28 @@ import {
   PopoverBody,
   PopoverHeader,
   UncontrolledPopover,
+  Card
 } from "reactstrap";
 // core components
 
 function SectionBeerBody() {
+  const Breweries = "Y";
+  const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [ItemsStyle, setItemsStyle] = useState([]);
-
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
+  const [ItemsBreweries, setItemsbreweries] = useState([]);
+  
   useEffect(() => {
-    fetch('https://cors-anywhere.herokuapp.com/'+'http://api.brewerydb.com/v2/beer/random/?withBreweries=Y&hasLabels=Y&key=a5c1b917e7ba62dcd79f434ed73bc72d')
+    fetch('https://cors-anywhere.herokuapp.com/'+'http://api.brewerydb.com/v2/beer/random/?withBreweries='+Breweries+'&hasLabels=Y&key='+APikey)
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setItems(result.data);
           setItemsStyle(result.data.style);
-                
+          setItemsbreweries(result.data.breweries[0]);
         },
         (error) => {
           setIsLoaded(true);
@@ -63,51 +64,62 @@ function SectionBeerBody() {
         }
       )
   }, [])
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
     return (
+            
             <div className="main">
-      <ul><Container>
-           <div className="owner">
-            <div className="avatar">
-              <img
-                alt="..."
-                className="img-circle img-responsive"
-                src={require("assets/img/default-avatar.png")}
-              />
-            </div>
-            <div className="name">
-              <h4 className="title">
-                {items.nameDisplay} <br />
-                       
-              </h4>
-              <h6 className="description"> 
-  
-
-        
-        
-        </h6>
-            </div>
-          </div>
+      <Container>
           <Row>
-            <Col className="ml-auto mr-auto text-center" md="6">
-              <p>
-                 {ItemsStyle.description} 
-              </p>
-              <br />
-               
-            </Col>
+              <Col className="ml-auto mr-auto" lg="4">
+              <Card className="card-register ml-auto mr-auto mt-0">
+              <div className="name text-center">
+                  <h4 className="title">
+                      {items.nameDisplay} 
+                  </h4>
+              </div>
+              <br/> <br/><br/>
+              <div className="owner">
+                  <div className="avatar">
+                      <img
+                          alt="..."
+                          className="img-circle img-responsive"
+                          src={require("assets/img/beer.png")}
+                          />
+                  </div>
+              </div>
+               <div className="name text-center text-info">
+                  <h6 className="title">
+                      {ItemsStyle.shortName} 
+                  </h6>
+              </div>
+                  </Card>
+                  </Col>
+
+                  <Col className="ml-auto mr-auto text-justify" md="6">
+                  <div class="row"><div class="col-md-8">
+                     
+                  <a href="#pablo" class="btn-link mr-1 btn btn-primary"> {ItemsBreweries.name}</a> 
+                  </div>
+                  </div>
+                  <br/>
+
+                  <div className="name ">
+                      <p>
+                          {ItemsStyle.description}
+                      </p>
+                  </div>
+                  
+                  <br />
+                  </Col>
           </Row>
+          
         </Container>
-      
-      </ul>
       </div>
     );
   }
 }
-
 export default SectionBeerBody;
