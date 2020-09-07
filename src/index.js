@@ -28,18 +28,14 @@ import "assets/scss/paper-kit.scss?v=1.2.0";
 import "assets/demo/demo.css?v=1.2.0";
 // pages
 import Index from "views/Index.js";
-import Brewries from "views/Brewries.js";
-import NucleoIcons from "views/NucleoIcons.js";
+import Brewriesbody from "views/breweries-sections/SectionBreweryBody.js";
 // others
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/index" render={(props) => <Index {...props} />} />
-      <Route
-        path="/Brewries"
-        render={(props) => <Brewries {...props} />}
-      />
+      <Route path="/Brewries/:id" excat  component = {Brewriesbody} />
       <Redirect to="/index" />
     </Switch>
   </BrowserRouter>,

@@ -18,123 +18,132 @@
  * Date: 01/09/2020
  */
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+
 
 // reactstrap components
 import {
-Button,
-        FormGroup,
-        InputGroupAddon,
-        InputGroupText,
-        InputGroup,
-        Modal,
+        Button,
         Container,
         Row,
         Col,
-        UncontrolledTooltip,
-        PopoverBody,
-        PopoverHeader,
-        UncontrolledPopover,
         Card
         } from "reactstrap";
 // core components
-import {
-BrowserRouter as Router,
-        Switch,
-        Route,
-        Link
-        } from "react-router-dom";
 
+import {BrowserRouter as Router,Link} from "react-router-dom";
 
 function SectionBeerBody() {
-    const Breweries = "Y";
-    const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
-    const URL = "https://cors-anywhere.herokuapp.com/" + "http://api.brewerydb.com/v2/beer/random/?";
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
-    const [ItemsStyle, setItemsStyle] = useState([]);
-    const [ItemsBreweries, setItemsbreweries] = useState([]);
-
-    useEffect(() => {
-        fetch(URL + 'withBreweries=' + Breweries + '&hasLabels=Y&key=' + APikey)
-                .then(res => res.json())
-                .then(
-                        (result) => {
-                    setIsLoaded(true);
-                    setItems(result.data);
-                    setItemsStyle(result.data.style);
-                    setItemsbreweries(result.data.breweries[0]);
-                },
-                        (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-                )
-    }, [])
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div className="main">
-            <Container>
-                <Row>
-                    <Col className="ml-auto mr-auto" lg="4">
-                    <div className="name text-center">
-                        <h4 className="title">
-                            Loading...
-                        </h4>
-                    </div> </Col></Row> </Container></div>;
-    } else {
-        return (
-                <div className="main">
-                    <Container>
-                        <Row>
-                            <Col className="ml-auto mr-auto" lg="4">
-                            <Card className="card-register ml-auto mr-auto mt-0">
-                            <div className="name text-center">
-                                <h4 className="title">
-                                    {items.nameDisplay} 
-                                </h4>
-                            </div>
-                            <br/> <br/><br/>
-                            <div className="owner">
-                                <div className="avatar">
-                                    <img
-                                        alt="..."
-                                        className="img-circle img-responsive "
-                                        src={require("assets/img/beer.png")}
-                                        />
-                                </div>
-                            </div>
-                            <div className="name text-center text-info">
-                                <h6 className="title">
-                                    {ItemsStyle.shortName} 
-                                </h6>
-                            </div>
-                            </Card>
-                            </Col>
-                
-                            <Col className="ml-auto mr-auto text-justify" md="6">
-                            <div class="row">
-                                <Link  to={{pathname: "/Brewries", search: "?Brewery=" + ItemsBreweries.id}} class="btn-link btn btn-primary">{ItemsBreweries.name}</Link>
-                
-                
-                            </div>
-                            <br/>
-                
-                            <div className="name ">
-                                <p>
-                                    {ItemsStyle.description}
-                                </p>
-                            </div>
-                
-                            <br />
-                            </Col>
-                        </Row>
-                
-                    </Container>
-                </div>
-                );
+   
+  const Breweries = "Y";
+  const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
+  const URL = "https://cors-anywhere.herokuapp.com/"+"http://api.brewerydb.com/v2/beer/random/?";
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState(0);
+  const [ItemsStyle, setItemsStyle] = useState([]);
+  const [ItemsBreweries, setItemsbreweries] = useState([]);
+  
+   useEffect( () => {
+    fetchData()
+  }, [])
+  
+  const fetchData = async () => {
+           fetch(URL+'withBreweries='+Breweries+'&hasLabels=Y&key='+APikey)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result.data);
+          setItemsStyle(result.data.style);
+          setItemsbreweries(result.data.breweries[0]);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
     }
+
+  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+      return <div>  <Container>
+              <Row>
+                  <Col className="ml-auto mr-auto" lg="4">
+                  <div className="name text-center">
+                      <h4 className="title">
+                          Loading...
+                      </h4>
+        </div> </Col></Row> </Container></div>;
+  } else {
+    return (
+            
+
+                <div className="main">
+          <Container>
+       <div className="section javascript-components">
+            <div className="bg-light clearfix ">
+                <div className="pull-left">
+                    <h2 className='m-0 ml-4'>Know your Beer</h2>
+                </div>
+                <Button
+                    className="btn-round pull-right m-2 mr-4"
+                    color="danger"
+                    outline
+                    type="button"
+                    onClick={fetchData} >
+                    <i className="nc-icon nc-atom" />  Brew New 
+                </Button>
+            </div>
+      </div>
+              <Row>
+                  <Col className="ml-auto mr-auto" lg="4">
+                  <Card className="card-register ml-auto mr-auto mt-0">
+                  <div className="name text-center">
+                      <h4 className="title">
+                          {items.nameDisplay} 
+                      </h4>
+                  </div>
+                  <br/> <br/><br/>
+                  <div className="owner">
+                      <div className="avatar">
+                          <img
+                              alt="..."
+                              className="img-circle img-responsive "
+                              src={require("assets/img/beer.png")}
+                              />
+                      </div>
+                  </div>
+                   <div className="name text-center text-info">
+                      <h6 className="title">
+                          {ItemsStyle.shortName} 
+                      </h6>
+                  </div>
+                      </Card>
+                      </Col>
+    
+                      <Col className="ml-auto mr-auto text-justify" md="6">
+                      <div className="row">
+                          <Link  to={`/Brewries/${ItemsBreweries.id}`} className="btn-link btn btn-primary">{ItemsBreweries.name}</Link>
+    
+                      
+                      </div>
+                      <br/>
+    
+                      <div className="name ">
+                          <p>
+                              {ItemsStyle.description}
+                          </p>
+                      </div>
+                      
+                      <br />
+                      </Col>
+              </Row>
+              
+            </Container>
+          </div>
+    );
+  }
 }
 export default SectionBeerBody;

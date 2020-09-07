@@ -29,7 +29,6 @@ import IndexHeader from "components/Headers/IndexHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
 // index sections
-import SectionJavaScript from "views/index-sections/SectionJavaScript.js";
 import SectionDark from "views/index-sections/SectionDark.js";
 import SectionBeerBody from "views/index-sections/SectionBeerBody.js";
 
@@ -46,7 +45,6 @@ function Index() {
       <IndexNavbar />
       <IndexHeader />
       <div className="main">
-        <SectionJavaScript />
         <SectionBeerBody /> 
         <SectionDark />
         <DemoFooter />
