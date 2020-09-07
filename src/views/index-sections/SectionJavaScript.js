@@ -39,14 +39,16 @@ import {
   PopoverHeader,
   UncontrolledPopover,
 } from "reactstrap";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-// core components
+import SectionBeerBody from "views/index-sections/SectionBeerBody.js";
 
 function SectionJavaScript() {
-  const [modal, setModal] = React.useState(false);
-  const toggleModal = () => {
-    setModal(!modal);
-  };
   return (
     <>
       <div className="section javascript-components">
@@ -60,7 +62,7 @@ function SectionJavaScript() {
                     color="danger"
                     outline
                     type="button"
-                    onClick={toggleModal} >
+                    onClick={SectionBeerBody} >
                     <i class="nc-icon nc-atom" />  Brew New 
                 </Button>
             </div>

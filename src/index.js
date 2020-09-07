@@ -28,6 +28,7 @@ import "assets/scss/paper-kit.scss?v=1.2.0";
 import "assets/demo/demo.css?v=1.2.0";
 // pages
 import Index from "views/Index.js";
+import Brewries from "views/Brewries.js";
 import NucleoIcons from "views/NucleoIcons.js";
 // others
 
@@ -36,8 +37,8 @@ ReactDOM.render(
     <Switch>
       <Route path="/index" render={(props) => <Index {...props} />} />
       <Route
-        path="/nucleo-icons"
-        render={(props) => <NucleoIcons {...props} />}
+        path="/Brewries"
+        render={(props) => <Brewries {...props} />}
       />
       <Redirect to="/index" />
     </Switch>

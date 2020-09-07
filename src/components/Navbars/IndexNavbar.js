@@ -72,7 +72,6 @@ function IndexNavbar() {
           <NavbarBrand
             data-placement="bottom"
             href="/index"
-            target="_blank"
             title="Random Beer App"
           >
            Home
