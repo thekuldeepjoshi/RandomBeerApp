@@ -30,25 +30,28 @@ import {
         } from "reactstrap";
 // core components
 
-import {BrowserRouter as Router,Link} from "react-router-dom";
+import {  Link} from "react-router-dom";
+
+ 
 
 function SectionBeerBody() {
-   
-  const Breweries = "Y";
+    const Breweries = "Y";
   const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
-  const URL = "https://cors-anywhere.herokuapp.com/"+"http://api.brewerydb.com/v2/beer/random/?";
+  const [beerid, setBeerId] = useState('random');
+  const URL = `https://cors-anywhere.herokuapp.com/http://api.brewerydb.com/v2/beer/`;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(0);
   const [ItemsStyle, setItemsStyle] = useState([]);
   const [ItemsBreweries, setItemsbreweries] = useState([]);
-  
+
    useEffect( () => {
     fetchData()
+    console.log(beerid);
   }, [])
   
   const fetchData = async () => {
-           fetch(URL+'withBreweries='+Breweries+'&hasLabels=Y&key='+APikey)
+           fetch(URL+beerid+'/?withBreweries='+Breweries+'&hasLabels=Y&key='+APikey)
       .then(res => res.json())
       .then(
         (result) => {
@@ -56,6 +59,7 @@ function SectionBeerBody() {
           setItems(result.data);
           setItemsStyle(result.data.style);
           setItemsbreweries(result.data.breweries[0]);
+          setBeerId(result.data.id);
         },
         (error) => {
           setIsLoaded(true);
@@ -125,7 +129,7 @@ function SectionBeerBody() {
     
                       <Col className="ml-auto mr-auto text-justify" md="6">
                       <div className="row">
-                          <Link  to={`/Brewries/${ItemsBreweries.id}`} className="btn-link btn btn-primary">{ItemsBreweries.name}</Link>
+                          <Link  to={{pathname:`/Brewries/${ItemsBreweries.id}`,state:{beerid:items.id}}} className="btn-link btn btn-primary">{ItemsBreweries.name}</Link>
     
                       
                       </div>

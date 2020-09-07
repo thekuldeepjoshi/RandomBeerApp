@@ -20,7 +20,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // styles
 import "assets/css/bootstrap.min.css";
@@ -32,13 +32,12 @@ import Brewriesbody from "views/breweries-sections/SectionBreweryBody.js";
 // others
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Router>
     <Switch>
-      <Route path="/index" render={(props) => <Index {...props} />} />
-      <Route path="/Brewries/:id" excat  component = {Brewriesbody} />
-      <Redirect to="/index" />
+      <Route exact path="/" render={(props) => <Index {...props} />} />
+      <Route path="/Brewries/:id" component = {Brewriesbody} />
     </Switch>
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 

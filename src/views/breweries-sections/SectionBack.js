@@ -13,14 +13,13 @@ import {
   Button,
   Container
 } from "reactstrap";
-import { useHistory } from 'react-router-dom';
+import { useHistory,useLocation  } from 'react-router-dom';
 
 function SectionBack() {
 const history = useHistory();
-console.log(history);
+const location = useLocation();
 function goBackHandle(){
     history.goBack();
-    console.log(history);
 }
   return (
     <>
@@ -41,7 +40,7 @@ function goBackHandle(){
             </div>
           
         </Container>
-      </div>{" "}
+      </div>
     </>
   );
 }
