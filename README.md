@@ -34,7 +34,7 @@ If you have an error something containing
 
 <br>
 For any other installation issues <br>
-Please refre to [Docs](https://demos.creative-tim.com/paper-kit-react/?_ga=2.210282640.44007126.1599554178-1117259577.1598993347#/documentation/introduction))
+Please refre to https://demos.creative-tim.com/paper-kit-react/?_ga=2.210282640.44007126.1599554178-1117259577.1598993347#/documentation/introduction
 
 ### `npm start`
 Navigates you to [http://localhost:3000](http://localhost:3000)
