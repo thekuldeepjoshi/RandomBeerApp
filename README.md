@@ -1,5 +1,5 @@
 # randombeerapp
-This web based app lets you generate RandomBeers using BreweryDB API. It is developed on React. 
+This web based responsive app lets you generate RandomBeers on click using BreweryDB API. It is developed using React version 16.13.1. 
 <br>
 Bootstarp: Paper Kit React, a freeby Bootstrap 4, React and Reactstrap UI Kit.
 <br><br>
