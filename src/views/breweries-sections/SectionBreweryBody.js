@@ -22,12 +22,12 @@ import {  useParams } from 'react-router-dom';
         fetchbrewery()
 
                 }, [])
-                const {id} = useParams();
+                const {id} = useParams(); //get Id from SectionBeerBody to fetch brewery id
                 const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
                 const [error, setError] = useState(null);
                 const [isLoaded, setIsLoaded] = useState(false);
                 const [items, setItems] = useState({
-        images:{}
+        images:{} // store image url as part of items
         });
                 const fetchbrewery = () => {
         fetch(`https://cors-anywhere.herokuapp.com/http://api.brewerydb.com/v2/brewery/${id}/?key=` + APikey)

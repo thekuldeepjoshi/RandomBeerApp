@@ -13,13 +13,13 @@ import {
   Button,
   Container
 } from "reactstrap";
-import { useHistory,useLocation  } from 'react-router-dom';
+import { useHistory  } from 'react-router-dom';
 
 function SectionBack() {
 const history = useHistory();
-const location = useLocation();
+
 function goBackHandle(){
-    history.goBack();
+    history.goBack(); // Go back to previous page using useHistory hooks from react routerv5
 }
   return (
     <>

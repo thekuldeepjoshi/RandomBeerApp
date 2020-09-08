@@ -14,6 +14,7 @@
  =========================================================
  
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * 
  * Edited by Kuldeep Joshi
  * Date: 01/09/2020
  */
@@ -35,9 +36,8 @@ import {  Link} from "react-router-dom";
  
 
 function SectionBeerBody() {
-    const Breweries = "Y";
+  const Breweries = "Y";
   const APikey = "a5c1b917e7ba62dcd79f434ed73bc72d";
-  const [beerid, setBeerId] = useState('random');
   const URL = `https://cors-anywhere.herokuapp.com/http://api.brewerydb.com/v2/beer/`;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,20 +46,19 @@ function SectionBeerBody() {
   const [ItemsBreweries, setItemsbreweries] = useState([]);
 
    useEffect( () => {
-    fetchData()
-    console.log(beerid);
+    fetchData() // call to fetch data from give url and store into set items
   }, [])
   
   const fetchData = async () => {
-           fetch(URL+beerid+'/?withBreweries='+Breweries+'&hasLabels=Y&key='+APikey)
+           fetch(URL+'random/?withBreweries='+Breweries+'&hasLabels=Y&key='+APikey) //fetch data from URL
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result.data);
-          setItemsStyle(result.data.style);
+          setItems(result.data); //store data from result into itmes 
+          setItemsStyle(result.data.style); 
           setItemsbreweries(result.data.breweries[0]);
-          setBeerId(result.data.id);
+          
         },
         (error) => {
           setIsLoaded(true);
@@ -71,7 +70,7 @@ function SectionBeerBody() {
   
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (!isLoaded) { //display loading while trying to fetch data from api.
       return <div>  <Container>
               <Row>
                   <Col className="ml-auto mr-auto" lg="4">
@@ -129,9 +128,7 @@ function SectionBeerBody() {
     
                       <Col className="ml-auto mr-auto text-justify" md="6">
                       <div className="row">
-                          <Link  to={{pathname:`/Brewries/${ItemsBreweries.id}`,state:{beerid:items.id}}} className="btn-link btn btn-primary">{ItemsBreweries.name}</Link>
-    
-                      
+                          <Link  to={{pathname:`/Brewries/${ItemsBreweries.id}`,state:{beerid:items.id}}} className="btn-link btn btn-primary">{ItemsBreweries.name}</Link>                    
                       </div>
                       <br/>
     
